@@ -13,33 +13,22 @@
             font-family: 'Inter', sans-serif;
             background-color: #0d1117; /* Dark background */
         }
-        /* Custom scroll snap for the requested feed-like experience */
-        .pizza-feed {
-            scroll-snap-type: y mandatory;
-        }
-        .pizza-card {
-            scroll-snap-align: start;
-            min-height: 100vh; /* Make each card take up the full viewport height on scroll */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem 0;
-        }
+        /* Custom styles are removed to allow native scrolling and grid layout */
     </style>
 </head>
 <body class="text-gray-100">
 
     <!-- Header & Navigation -->
-    <header class="bg-red-800 shadow-xl sticky top-0 z-50">
+    <header class="bg-red-700 shadow-xl sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <h1 class="text-3xl font-extrabold tracking-tight text-white uppercase">
                 Continental Pizza
             </h1>
             <nav class="hidden md:block">
-                <a href="#menu" class="text-white hover:text-red-300 font-medium px-3 transition duration-150 ease-in-out">Menu</a>
-                <a href="#about" class="text-white hover:text-red-300 font-medium px-3 transition duration-150 ease-in-out">Our Mission</a>
-                <button class="ml-4 bg-yellow-400 text-gray-900 font-bold py-2 px-4 rounded-lg shadow-md hover:bg-yellow-300 transition duration-150 ease-in-out">
+                <a href="#menu" class="text-white hover:text-red-300 font-medium px-3 transition duration-150 ease-in-out uppercase">Menu</a>
+                <!-- Link now targets the Modal -->
+                <a href="#" id="openMissionModal" class="text-white hover:text-red-300 font-medium px-3 transition duration-150 ease-in-out uppercase">Our Mission</a>
+                <button class="ml-4 bg-yellow-500 text-gray-900 font-bold py-2 px-4 rounded-lg shadow-md hover:bg-yellow-400 transition duration-150 ease-in-out uppercase">
                     Order Now
                 </button>
             </nav>
@@ -47,152 +36,199 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="bg-gray-900 text-center py-20 border-b-4 border-yellow-400">
+    <section class="bg-gray-900 text-center py-20 border-b-4 border-yellow-500">
         <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-6xl md:text-8xl font-black mb-4 text-red-600">
+            <h2 class="text-6xl md:text-8xl font-black mb-4 text-red-600 uppercase">
                 A World on Your Plate.
             </h2>
             <p class="text-2xl text-gray-400 font-light italic">
-                Nine unique pies, nine unforgettable journeys.
+                NINE UNIQUE PIES, NINE UNFORGETTABLE JOURNEYS. **ALL LARGE (15-INCH) PIZZAS.**
             </p>
         </div>
     </section>
 
-    <!-- Pizza Feed Section -->
-    <section id="menu" class="pizza-feed">
+    <!-- Pizza Feed Section - Now a Dynamic Grid -->
+    <section id="menu" class="max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-4xl font-extrabold text-center mb-4 text-red-500 uppercase">The Global Menu</h2>
+        <p class="text-center text-xl text-gray-400 mb-12 font-medium uppercase">We believe in generous portions. Every Continental Pizza is a standard **Large (15-inch)** and priced consistently at **$11.11**.</p>
+        
+        <!-- Dynamic Grid Container: 1 column on mobile, 2 on tablet, 3 on desktop -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-        <!-- 1. North America -->
-        <div class="pizza-card bg-gray-800 border-b border-gray-700">
-            <div class="max-w-4xl w-full flex flex-col md:flex-row items-center p-6 md:p-12 rounded-xl shadow-2xl bg-gray-900/80">
-                <img src="1.png" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1E40AF/FFFFFF?text=Pizza+Image';" class="w-full md:w-1/2 h-auto rounded-lg shadow-xl mb-6 md:mb-0 md:mr-10 object-cover">
-                <div class="md:w-1/2">
-                    <span class="text-sm font-semibold uppercase tracking-wider text-red-500">North America</span>
-                    <h3 class="text-4xl font-bold mb-3 text-white">The Diner Supreme</h3>
-                    <p class="text-gray-300 mb-4 italic">The ultimate classic—cheesy, meaty, and bold.</p>
-                    <p class="text-lg text-yellow-400 font-medium">Toppings:</p>
-                    <p class="text-gray-400">Pepperoni, Italian Sausage, Sautéed Mushrooms, Green Peppers, and Onions.</p>
+            <!-- 1. North America -->
+            <div class="bg-gray-800 rounded-xl shadow-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition duration-300 ease-in-out">
+                <img src="1.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E40AF/FFFFFF?text=DINER+SUPREME';" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="text-sm font-semibold uppercase tracking-wider text-red-400">North America</span>
+                    <h3 class="text-3xl font-bold text-white mb-1 uppercase">The Diner Supreme</h3>
+                    <p class="text-2xl font-black text-yellow-500 mb-3 uppercase">$11.11</p>
+                    <p class="text-gray-300 text-sm mb-4 italic uppercase">The ultimate classic—cheesy, meaty, and bold.</p>
+                    <p class="text-gray-300 text-sm uppercase">Pepperoni, Italian Sausage, Sautéed Mushrooms, Green Peppers, and Onions.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- 2. South America -->
-        <div class="pizza-card bg-gray-900 border-b border-gray-700">
-            <div class="max-w-4xl w-full flex flex-col md:flex-row items-center p-6 md:p-12 rounded-xl shadow-2xl bg-gray-800/80">
-                <img src="2.png" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1E40AF/FFFFFF?text=Pizza+Image';" class="w-full md:w-1/2 h-auto rounded-lg shadow-xl mb-6 md:mb-0 md:mr-10 object-cover">
-                <div class="md:w-1/2">
-                    <span class="text-sm font-semibold uppercase tracking-wider text-green-500">South America (Argentina)</span>
-                    <h3 class="text-4xl font-bold mb-3 text-white">The Argentine Fugazza</h3>
-                    <p class="text-gray-300 mb-4 italic">An Italian-Argentine hybrid that focuses on sweet, savory onions.</p>
-                    <p class="text-lg text-yellow-400 font-medium">Toppings:</p>
-                    <p class="text-gray-400">**No Sauce** (White Pie), Mozzarella, a generous layer of **Caramelized Sweet Onions**, Oregano, and a drizzle of premium Olive Oil.</p>
+            <!-- 2. South America -->
+            <div class="bg-gray-800 rounded-xl shadow-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition duration-300 ease-in-out">
+                <img src="2.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E40AF/FFFFFF?text=FUGAZZA';" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="text-sm font-semibold uppercase tracking-wider text-green-400">South America (Argentina)</span>
+                    <h3 class="text-3xl font-bold text-white mb-1 uppercase">The Argentine Fugazza</h3>
+                    <p class="text-2xl font-black text-yellow-500 mb-3 uppercase">$11.11</p>
+                    <p class="text-gray-300 text-sm mb-4 italic uppercase">AN ITALIAN-ARGENTINE HYBRID THAT FOCUSES ON SWEET, SAVORY ONIONS.</p>
+                    <p class="text-gray-300 text-sm uppercase">**NO SAUCE** (WHITE PIE), MOZZARELLA, CARAMELIZED SWEET ONIONS, OREGANO, AND OLIVE OIL.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- 3. Europe -->
-        <div class="pizza-card bg-gray-800 border-b border-gray-700">
-            <div class="max-w-4xl w-full flex flex-col md:flex-row items-center p-6 md:p-12 rounded-xl shadow-2xl bg-gray-900/80">
-                <img src="3.png" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1E40AF/FFFFFF?text=Pizza+Image';" class="w-full md:w-1/2 h-auto rounded-lg shadow-xl mb-6 md:mb-0 md:mr-10 object-cover">
-                <div class="md:w-1/2">
-                    <span class="text-sm font-semibold uppercase tracking-wider text-red-500">Europe (Italy)</span>
-                    <h3 class="text-4xl font-bold mb-3 text-white">The Roman Artichoke</h3>
-                    <p class="text-gray-300 mb-4 italic">A true Mediterranean masterpiece with cured ham and tangy vegetables.</p>
-                    <p class="text-lg text-yellow-400 font-medium">Toppings:</p>
-                    <p class="text-gray-400">Tomato Sauce, Fresh Mozzarella, **Prosciutto di Parma** (added after baking), Marinated Artichoke Hearts, and Fresh Basil.</p>
+            <!-- 3. Europe -->
+            <div class="bg-gray-800 rounded-xl shadow-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition duration-300 ease-in-out">
+                <img src="3.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E40AF/FFFFFF?text=ROMAN+ARTICHOKE';" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="text-sm font-semibold uppercase tracking-wider text-red-400">Europe (Italy)</span>
+                    <h3 class="text-3xl font-bold text-white mb-1 uppercase">The Roman Artichoke</h3>
+                    <p class="text-2xl font-black text-yellow-500 mb-3 uppercase">$11.11</p>
+                    <p class="text-gray-300 text-sm mb-4 italic uppercase">A TRUE MEDITERRANEAN MASTERPIECE WITH CURED HAM AND TANGY VEGETABLES.</p>
+                    <p class="text-gray-300 text-sm uppercase">Tomato Sauce, Fresh Mozzarella, **Prosciutto di Parma**, Marinated Artichoke Hearts, and Fresh Basil.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- 4. East Asia -->
-        <div class="pizza-card bg-gray-900 border-b border-gray-700">
-            <div class="max-w-4xl w-full flex flex-col md:flex-row items-center p-6 md:p-12 rounded-xl shadow-2xl bg-gray-800/80">
-                <img src="4.png" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1E40AF/FFFFFF?text=Pizza+Image';" class="w-full md:w-1/2 h-auto rounded-lg shadow-xl mb-6 md:mb-0 md:mr-10 object-cover">
-                <div class="md:w-1/2">
-                    <span class="text-sm font-semibold uppercase tracking-wider text-blue-500">East Asia (Japan/Korea Inspired)</span>
-                    <h3 class="text-4xl font-bold mb-3 text-white">The Umami Eel</h3>
-                    <p class="text-gray-300 mb-4 italic">Sweet, savory, and rich, blending traditional ingredients with a pizza base.</p>
-                    <p class="text-lg text-yellow-400 font-medium">Toppings:</p>
-                    <p class="text-gray-400">Soy-ginger glaze base, Mozzarella, Cooked **Eel (Unagi)** or Teriyaki Chicken, Sweet Corn, a swirl of **Kewpie Mayonnaise**, and Nori (seaweed) flakes.</p>
+            <!-- 4. East Asia -->
+            <div class="bg-gray-800 rounded-xl shadow-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition duration-300 ease-in-out">
+                <img src="4.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E40AF/FFFFFF?text=UMAMI+EEL';" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="text-sm font-semibold uppercase tracking-wider text-blue-400">East Asia</span>
+                    <h3 class="text-3xl font-bold text-white mb-1 uppercase">The Umami Eel</h3>
+                    <p class="text-2xl font-black text-yellow-500 mb-3 uppercase">$11.11</p>
+                    <p class="text-gray-300 text-sm mb-4 italic uppercase">SWEET, SAVORY, AND RICH, BLENDING TRADITIONAL INGREDIENTS WITH A PIZZA BASE.</p>
+                    <p class="text-gray-300 text-sm uppercase">SOY-GINGER GLAZE BASE, MOZZARELLA, COOKED **EEL (UNAGI)** OR TERIYAKI CHICKEN, SWEET CORN, **KEWPIE MAYONNAISE**, AND NORI FLAKES.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- 5. West Asia -->
-        <div class="pizza-card bg-gray-800 border-b border-gray-700">
-            <div class="max-w-4xl w-full flex flex-col md:flex-row items-center p-6 md:p-12 rounded-xl shadow-2xl bg-gray-900/80">
-                <img src="5.png" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1E40AF/FFFFFF?text=Pizza+Image';" class="w-full md:w-1/2 h-auto rounded-lg shadow-xl mb-6 md:mb-0 md:mr-10 object-cover">
-                <div class="md:w-1/2">
-                    <span class="text-sm font-semibold uppercase tracking-wider text-yellow-600">West Asia (Middle East)</span>
-                    <h3 class="text-4xl font-bold mb-3 text-white">The Lebanese Za'atar Pie</h3>
-                    <p class="text-gray-300 mb-4 italic">Earthy, tangy, and aromatic, a classic flatbread flavor profile.</p>
-                    <p class="text-lg text-yellow-400 font-medium">Toppings:</p>
-                    <p class="text-gray-400">Oil base, Akawi/Feta Cheese blend, Ground Lamb seasoned with **Sumac** and Allspice, finished with fresh **Za'atar** and a touch of Harissa.</p>
+            <!-- 5. West Asia -->
+            <div class="bg-gray-800 rounded-xl shadow-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition duration-300 ease-in-out">
+                <img src="5.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E40AF/FFFFFF?text=ZAATAR+PIE';" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="text-sm font-semibold uppercase tracking-wider text-amber-400">West Asia (Middle East)</span>
+                    <h3 class="text-3xl font-bold text-white mb-1 uppercase">The Lebanese Za'atar Pie</h3>
+                    <p class="text-2xl font-black text-yellow-500 mb-3 uppercase">$11.11</p>
+                    <p class="text-gray-300 text-sm mb-4 italic uppercase">EARTHY, TANGY, AND AROMATIC, A CLASSIC FLATBREAD FLAVOR PROFILE.</p>
+                    <p class="text-gray-300 text-sm uppercase">OIL BASE, AKAWI/FETA CHEESE BLEND, GROUND LAMB SEASONED WITH **SUMAC**, FRESH **ZA'ATAR**, AND A TOUCH OF HARISSA.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- 6. North Africa -->
-        <div class="pizza-card bg-gray-900 border-b border-gray-700">
-            <div class="max-w-4xl w-full flex flex-col md:flex-row items-center p-6 md:p-12 rounded-xl shadow-2xl bg-gray-800/80">
-                <img src="6.png" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1E40AF/FFFFFF?text=Pizza+Image';" class="w-full md:w-1/2 h-auto rounded-lg shadow-xl mb-6 md:mb-0 md:mr-10 object-cover">
-                <div class="md:w-1/2">
-                    <span class="text-sm font-semibold uppercase tracking-wider text-red-700">North Africa (Morocco)</span>
-                    <h3 class="text-4xl font-bold mb-3 text-white">The Moroccan Tagine</h3>
-                    <p class="text-gray-300 mb-4 italic">Warm, complex spices balanced with fruit and heat.</p>
-                    <p class="text-lg text-yellow-400 font-medium">Toppings:</p>
-                    <p class="text-gray-400">Light Tomato Base, Mozzarella, Lamb/Chicken seasoned with **Ras el Hanout**, Sweet **Dried Apricots**, Cilantro, and a swirl of **Harissa Paste**.</p>
+            <!-- 6. North Africa -->
+            <div class="bg-gray-800 rounded-xl shadow-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition duration-300 ease-in-out">
+                <img src="6.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E40AF/FFFFFF?text=MOROCCAN+TAGINE';" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="text-sm font-semibold uppercase tracking-wider text-red-600">North Africa (Morocco)</span>
+                    <h3 class="text-3xl font-bold text-white mb-1 uppercase">The Moroccan Tagine</h3>
+                    <p class="text-2xl font-black text-yellow-500 mb-3 uppercase">$11.11</p>
+                    <p class="text-gray-300 text-sm mb-4 italic uppercase">WARM, COMPLEX SPICES BALANCED WITH FRUIT AND HEAT.</p>
+                    <p class="text-gray-300 text-sm uppercase">LIGHT TOMATO BASE, RAS EL HANOUT-SPICED MEAT, SWEET **DRIED APRICOTS**, CILANTRO, AND **HARISSA PASTE**.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- 7. South Africa -->
-        <div class="pizza-card bg-gray-800 border-b border-gray-700">
-            <div class="max-w-4xl w-full flex flex-col md:flex-row items-center p-6 md:p-12 rounded-xl shadow-2xl bg-gray-900/80">
-                <img src="7.png" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1E40AF/FFFFFF?text=Pizza+Image';" class="w-full md:w-1/2 h-auto rounded-lg shadow-xl mb-6 md:mb-0 md:mr-10 object-cover">
-                <div class="md:w-1/2">
-                    <span class="text-sm font-semibold uppercase tracking-wider text-green-600">South Africa</span>
-                    <h3 class="text-4xl font-bold mb-3 text-white">The Braai Wors</h3>
-                    <p class="text-gray-300 mb-4 italic">Celebrating the national barbecue culture with local favorites.</p>
-                    <p class="text-lg text-yellow-400 font-medium">Toppings:</p>
-                    <p class="text-gray-400">Tomato Base, Mozzarella, sliced **Boerewors** (coarse sausage), Caramelized Onions, Creamy Feta, and fresh **Avocado** (added after baking).</p>
+            <!-- 7. South Africa -->
+            <div class="bg-gray-800 rounded-xl shadow-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition duration-300 ease-in-out">
+                <img src="7.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E40AF/FFFFFF?text=BRAAI+WORS';" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="text-sm font-semibold uppercase tracking-wider text-green-500">South Africa</span>
+                    <h3 class="text-3xl font-bold text-white mb-1 uppercase">The Braai Wors</h3>
+                    <p class="text-2xl font-black text-yellow-500 mb-3 uppercase">$11.11</p>
+                    <p class="text-gray-300 text-sm mb-4 italic uppercase">CELEBRATING THE NATIONAL BARBECUE CULTURE WITH LOCAL FAVORITES.</p>
+                    <p class="text-gray-300 text-sm uppercase">TOMATO BASE, SLICED **BOEREWORS**, CARAMELIZED ONIONS, CREAMY FETA, AND FRESH **AVOCADO**.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- 8. Australia/Oceania -->
-        <div class="pizza-card bg-gray-900 border-b border-gray-700">
-            <div class="max-w-4xl w-full flex flex-col md:flex-row items-center p-6 md:p-12 rounded-xl shadow-2xl bg-gray-800/80">
-                <img src="8.png" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1E40AF/FFFFFF?text=Pizza+Image';" class="w-full md:w-1/2 h-auto rounded-lg shadow-xl mb-6 md:mb-0 md:mr-10 object-cover">
-                <div class="md:w-1/2">
+            <!-- 8. Australia/Oceania -->
+            <div class="bg-gray-800 rounded-xl shadow-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition duration-300 ease-in-out">
+                <img src="8.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E40AF/FFFFFF?text=AUSSIE+BBQ';" class="w-full h-48 object-cover">
+                <div class="p-6">
                     <span class="text-sm font-semibold uppercase tracking-wider text-yellow-400">Australia & Oceania</span>
-                    <h3 class="text-4xl font-bold mb-3 text-white">The Aussie BBQ</h3>
-                    <p class="text-gray-300 mb-4 italic">A classic down-under combo—sweet, smoky, and salty.</p>
-                    <p class="text-lg text-yellow-400 font-medium">Toppings:</p>
-                    <p class="text-gray-400">**BBQ Sauce Base**, Mozzarella, Shredded Chicken, Bacon, Red Onion, and sweet Pineapple chunks.</p>
+                    <h3 class="text-3xl font-bold text-white mb-1 uppercase">The Aussie BBQ</h3>
+                    <p class="text-2xl font-black text-yellow-500 mb-3 uppercase">$11.11</p>
+                    <p class="text-gray-300 text-sm mb-4 italic uppercase">A CLASSIC DOWN-UNDER COMBO—SWEET, SMOKY, AND SALTY.</p>
+                    <p class="text-gray-300 text-sm uppercase">**BBQ SAUCE BASE**, MOZZARELLA, SHREDDED CHICKEN, BACON, RED ONION, AND SWEET PINEAPPLE CHUNKS.</p>
                 </div>
             </div>
-        </div>
 
-        <!-- 9. Antarctica (Dessert) -->
-        <div class="pizza-card bg-gray-800 border-b border-gray-700">
-            <div class="max-w-4xl w-full flex flex-col md:flex-row items-center p-6 md:p-12 rounded-xl shadow-2xl bg-gray-900/80 border-4 border-white/20">
-                <img src="9.png" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1E40AF/FFFFFF?text=Pizza+Image';" class="w-full md:w-1/2 h-auto rounded-lg shadow-xl mb-6 md:mb-0 md:mr-10 object-cover">
-                <div class="md:w-1/2">
-                    <span class="text-sm font-semibold uppercase tracking-wider text-blue-300">Antarctica (Dessert Pizza)</span>
-                    <h3 class="text-4xl font-bold mb-3 text-white">The Polar Ice Cap</h3>
-                    <p class="text-gray-300 mb-4 italic">A refreshing finish, inspired by the chill of the South Pole.</p>
-                    <p class="text-lg text-yellow-400 font-medium">Toppings:</p>
-                    <p class="text-gray-400">**Cream Cheese 'Sauce'** Base, Crushed **Peppermint Candies**, White Chocolate Chips, finished with a dusting of **Powdered Sugar** (snow) and a dark chocolate drizzle.</p>
+            <!-- 9. Antarctica (Dessert) -->
+            <div class="bg-gray-800 rounded-xl shadow-2xl overflow-hidden cursor-pointer hover:scale-[1.02] transition duration-300 ease-in-out border-4 border-blue-200/50">
+                <img src="9.png" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E40AF/FFFFFF?text=POLAR+ICE+CAP';" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <span class="text-sm font-semibold uppercase tracking-wider text-blue-200">Antarctica (Dessert Pizza)</span>
+                    <h3 class="text-3xl font-bold text-white mb-1 uppercase">The Polar Ice Cap</h3>
+                    <p class="text-2xl font-black text-yellow-500 mb-3 uppercase">$11.11</p>
+                    <p class="text-gray-300 text-sm mb-4 italic uppercase">A REFRESHING FINISH, INSPIRED BY THE CHILL OF THE SOUTH POLE.</p>
+                    <p class="text-gray-300 text-sm uppercase">**CREAM CHEESE 'SAUCE'** BASE, CRUSHED **PEPPERMINT CANDIES**, WHITE CHOCOLATE CHIPS, AND **POWDERED SUGAR**.</p>
                 </div>
             </div>
+
         </div>
 
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 py-8 text-center text-gray-400">
-        <p>&copy; 2025 Continental Pizza. Taste the World, One Slice at a Time.</p>
+    <footer class="bg-gray-900 py-8 text-center text-gray-400 mt-12">
+        <p class="uppercase">&copy; 2025 CONTINENTAL PIZZA. TASTE THE WORLD, ONE SLICE AT A TIME.</p>
     </footer>
+
+    <!-- Mission Modal (Pop-up) -->
+    <div id="missionModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 hidden transition-opacity duration-300">
+        <div class="bg-gray-800 p-8 rounded-xl shadow-2xl max-w-lg w-11/12 transform transition-transform duration-300 scale-95 md:scale-100 border-2 border-red-600">
+            <div class="flex justify-between items-start mb-6">
+                <h4 class="text-4xl font-extrabold text-red-500 uppercase">Our Culinary Compass</h4>
+                <button id="closeMissionModal" class="text-gray-400 hover:text-white text-2xl leading-none font-light p-2 transition duration-150 ease-in-out">&times;</button>
+            </div>
+            
+            <p class="text-gray-300 mb-4 text-lg">
+                CONTINENTAL PIZZA WAS FOUNDED ON A SINGULAR VISION: TO **BRING THE CONTINENTS TO US.** WE BELIEVE THE WORLD’S FLAVORS SHOULDN'T REQUIRE A PASSPORT. EACH **15-INCH** PIZZA IS A METICULOUSLY CRAFTED CULINARY JOURNEY, BLENDING AUTHENTIC REGIONAL SPICES AND INGREDIENTS WITH THE UNIVERSAL COMFORT OF PIZZA. 
+            </p>
+            <p class="text-gray-300 italic">
+                FROM THE ICY PEPPERMINT CHILL OF THE POLAR ICE CAP TO THE SMOKY BBQ OF THE AUSSIE, OUR MISSION IS TO DELIVER GLOBAL INSPIRATION, RIGHT TO YOUR TABLE.
+            </p>
+            <div class="mt-6 text-right">
+                <button id="closeMissionModalBottom" class="bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-red-700 transition duration-150 ease-in-out uppercase">
+                    Got It!
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript for Modal Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('missionModal');
+            const openButton = document.getElementById('openMissionModal');
+            const closeButton = document.getElementById('closeMissionModal');
+            const closeButtonBottom = document.getElementById('closeMissionModalBottom');
+
+            // Function to close the modal
+            const closeModal = () => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            };
+
+            if (openButton && modal && closeButton && closeButtonBottom) {
+                // Open modal event
+                openButton.addEventListener('click', (e) => {
+                    e.preventDefault(); // Stop hash navigation
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                });
+
+                // Close modal events
+                closeButton.addEventListener('click', closeModal);
+                closeButtonBottom.addEventListener('click', closeModal);
+                
+                // Close if user clicks outside the modal content
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>
